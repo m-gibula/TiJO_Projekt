@@ -1,0 +1,98 @@
+<!doctype html>
+
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+
+  <title>Tytuł</title>
+  <meta name="description" content="AnnaKocik - Fotografia">
+  <meta name="author" content="Mateusz Gibuła">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/myCSS.css"/>
+
+</head>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+    function newNumber() {
+        $('body').append('<div class=\'alert alert-info\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>NEW NUMBER!</strong></div>');
+        setTimeout(function (){
+            $( ".alert" ).remove();
+        }, 3500);
+    }
+    function surrender(){
+        $('body').append('<div class=\'alert alert-info\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>GENERATED NUMBER</strong></div>');
+        setTimeout(function (){
+            $( ".alert" ).remove();
+        }, 3500);
+    }
+    function copyNumber() {
+        if($('#m').val()!==''){
+            $('#message').text($('#m').val());
+        }
+
+    }
+    $(function () {
+        var socket = io();
+        $('form').submit(function(){
+            socket.emit('res', $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+        socket.on('res', function(msg){
+            if(msg == 'low'){
+                $('body').append('<div class=\'alert alert-danger\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>WRONG!</strong> Too Low</div>');
+                setTimeout(function (){
+                    $( ".alert" ).remove();
+                }, 3500);
+
+            }else if(msg == 'high'){
+                $('body').append('<div class=\'alert alert-danger\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>WRONG!</strong> Too high</div>');
+                setTimeout(function (){
+                    $( ".alert" ).remove();
+                }, 3500);
+
+            }
+            else{
+                $('body').append('<div class=\'alert alert-success\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>SUCCESS!</strong> GZ</div>');
+                setTimeout(function (){
+                    $( ".alert" ).remove();
+                }, 3500);
+            }
+        });
+    });
+</script>
+
+<body style="background-image: url('img/login_bg.jpg');">
+    <div class="container-fluid">
+      <div class="row">
+          <div id="message" class="col-md-2 col-md-offset-5 login_widnow" style="text-align: center; margin-bottom: 50px; font-size: xx-large">
+              0
+          </div>
+
+        <div class="col-md-2 col-md-offset-5">
+            <form action="">
+                <input type="text" class="form-control login" id="m" placeholder="NUMBER"><br/>
+                <button onclick="copyNumber()" class="btn btn-info submit_btn">Send</button>
+            </form>
+            <button onclick="newNumber()" class="btn btn-info submit_btn">Wygeneruj liczbe</button>
+            <button onclick="surrender()" class="btn btn-danger submit_btn">Poddaj się</button>
+        </div></div>
+      </div>
+
+    </div>
+
+</body>
+</html>

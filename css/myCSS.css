@@ -1,0 +1,39 @@
+/*
+login_window
+*/
+body{
+    background-color: #cccccc;
+
+}
+.login_widnow{
+  margin-top: 200px;
+  color:#cccccc;
+  border-top: solid 2px #cccccc;
+  border-bottom: solid 2px #cccccc;
+  padding: 20px 0;
+
+}
+.submit_btn{
+  width:100%;
+}
+.login{
+  opacity:0.3;
+  text-align: right;
+
+    -moz-border-radius:0px; /* Firefox */
+    -webkit-border-radius: 0px; /* Safari, Chrome */
+    -khtml-border-radius: 0px; /* KHTML */
+    border-radius: 0px; /* CSS3 */
+}
+.content{
+  background-color: white;
+}
+
+/*
+---------------------------------------------------------------------
+add
+*/
+.article_input{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
