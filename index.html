@@ -26,8 +26,14 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
+    var socket = io();
     function newNumber() {
         //Place for newNumber() method body
+
+            //ODSHASHOWAC GDY BEDZIE LICZBA
+            //#socket.emit('newNum', WYGENEROWANA LICZBA);
+
+
         $('body').append('<div class=\'alert alert-info\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>NEW NUMBER!</strong></div>');
         setTimeout(function (){
             $( ".alert" ).remove();
@@ -47,7 +53,7 @@
 
     }
     $(function () {
-        var socket = io();
+
         $('form').submit(function(){
             socket.emit('res', $('#m').val());
             $('#m').val('');

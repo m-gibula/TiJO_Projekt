@@ -8,7 +8,11 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + 'index.html');
 });
 //GENERATED_RANDOM_NUMBER constance init
-GENERATED_RANDOM_NUMBER = 10;
+io.on('connection', function(socket){
+    socket.on('newNum', function(msg){
+        GENERATED_RANDOM_NUMBER = msg;
+    });
+});
 //CHANGE THAT
 io.on('connection', function(socket){
     console.log('nowy klient');
