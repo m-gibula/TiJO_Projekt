@@ -27,13 +27,15 @@
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 <script>
     function newNumber() {
+        //Place for newNumber() method body
         $('body').append('<div class=\'alert alert-info\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>NEW NUMBER!</strong></div>');
         setTimeout(function (){
             $( ".alert" ).remove();
         }, 3500);
     }
     function surrender(){
-        $('body').append('<div class=\'alert alert-info\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>GENERATED NUMBER</strong></div>');
+        //Place for surrender() method body
+        $('body').append('<div class=\'alert alert-info\' role=\'alert\' style=\'position: fixed; left:50px; top:0;\'><strong>TUTAJ WYRZUCIC LICZBE WYGENEROWANA!!</strong></div>');
         setTimeout(function (){
             $( ".alert" ).remove();
         }, 3500);
@@ -87,8 +89,8 @@
                 <input type="text" class="form-control login" id="m" placeholder="NUMBER"><br/>
                 <button onclick="copyNumber()" class="btn btn-info submit_btn">Send</button>
             </form>
-            <button onclick="newNumber()" class="btn btn-info submit_btn">Wygeneruj liczbe</button>
-            <button onclick="surrender()" class="btn btn-danger submit_btn">Poddaj się</button>
+            <button onclick="newNumber()" class="btn btn-info submit_btn">GENERATE</button><br/>
+            <button onclick="surrender()" class="btn btn-danger submit_btn">SURRENDER</button>
         </div></div>
       </div>
 

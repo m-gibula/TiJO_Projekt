@@ -1,4 +1,4 @@
-var GENERATED_RANDOM_NUMBER = 10;
+var GENERATED_RANDOM_NUMBER;
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
@@ -7,7 +7,9 @@ app.use(express.static(__dirname));
 app.get('/', function(req, res){
     res.sendFile(__dirname + 'index.html');
 });
-
+//GENERATED_RANDOM_NUMBER constance init
+GENERATED_RANDOM_NUMBER = 10;
+//CHANGE THAT
 io.on('connection', function(socket){
     console.log('nowy klient');
     socket.on('disconnect', function(){
